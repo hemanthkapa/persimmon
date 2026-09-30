@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Pipeline outputs (feature tables, joint matrices, clustering)
+data/
+
+# Local planning notes
+PLAN.md

@@ -1,0 +1,4 @@
+## Fixes in order of realization
+- The flipper script reverses the noral vectors on certain components but never updates the signed curvature value. New `explore_gt.py` script handles this.
+- `explore_gt.py` median-filled NaNs and z-scored per surface, but nothing downstream used it, and median filling would have corrupted smoothing, erased the `_valid` flags, and turned self-distance "no hit" into a typical distance. Removed; `explore_gt.py` now keeps NaNs and `features.py` fills them from mesh neighbors.
+- `features.py` flagged only 3 columns, but `average_width` is also often NaN (up to 100% of a surface), so filled values looked measured. Now every column with NaNs gets a `_valid` flag. Added `--fill-only` (real values kept, NaNs filled from nearest mesh values) for DiffusionNet; `--sigma 0` used to leave NaNs in.
